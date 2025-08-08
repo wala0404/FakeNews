@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/README.md">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/README.md" />
+              <option name="updatedContent" value="# Personalized News Platform Backend&#10;&#10;## Setup&#10;&#10;1. Create a virtual environment and activate it:&#10;   ```bash&#10;   python -m venv venv&#10;   source venv/bin/activate  # On Windows: venv\Scripts\activate&#10;   ```&#10;2. Install dependencies:&#10;   ```bash&#10;   pip install fastapi uvicorn scikit-learn pandas numpy python-multipart pytesseract pillow aiofiles python-dotenv&#10;   ```&#10;   - For OCR, install Tesseract:&#10;     - Windows: Download from https://github.com/tesseract-ocr/tesseract&#10;     - Add Tesseract to your PATH.&#10;&#10;3. Run the backend:&#10;   ```bash&#10;   uvicorn app.main:app --reload&#10;   ```&#10;&#10;## Project Structure&#10;&#10;- app/&#10;  - main.py&#10;  - routers/&#10;    - classify.py&#10;    - ocr.py&#10;    - recommend.py&#10;  - ml/&#10;    - infer.py&#10;    - features.py&#10;  - schemas.py&#10;- data/&#10;  - raw/&#10;  - processed/&#10;- models/&#10;- scripts/&#10;  - prepare_data.py&#10;- ml/&#10;  - train.py&#10;&#10;---&#10;&#10;# Personalized News Platform Frontend&#10;&#10;## Setup&#10;&#10;1. Install Node.js (https://nodejs.org/)&#10;2. Create the frontend app:&#10;   ```bash&#10;   npm create vite@latest frontend -- --template react&#10;   cd frontend&#10;   npm install&#10;   npm install axios tailwindcss postcss autoprefixer&#10;   npx tailwindcss init -p&#10;   ```&#10;3. Configure Tailwind in `tailwind.config.js` and `src/index.css` (see code).&#10;4. Add `.env`:&#10;   ```env&#10;   VITE_API_URL=http://localhost:8000&#10;   ```&#10;5. Run the frontend:&#10;   ```bash&#10;   npm run dev&#10;   ```&#10;&#10;## Structure&#10;- src/&#10;  - pages/&#10;    - Feed.jsx&#10;    - Verify.jsx&#10;  - components/&#10;    - ArticleCard.jsx&#10;    - UploadBox.jsx&#10;  - api/&#10;    - client.js&#10;    - news.js&#10;  - index.css&#10;  - App.jsx&#10;&#10;---&#10;&#10;# Communication&#10;- Backend runs on port 8000, frontend on 5173 (default Vite).&#10;- CORS is enabled in FastAPI.&#10;- Use the provided API endpoints from the frontend via Axios.&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/main.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/main.py" />
+              <option name="originalContent" value="# Personalized News Platform Backend&#10;&#10;## Setup&#10;&#10;1. Create a virtual environment and activate it:&#10;   ```bash&#10;   python -m venv venv&#10;   source venv/bin/activate  # On Windows: venv\Scripts\activate&#10;   ```&#10;2. Install dependencies:&#10;   ```bash&#10;   pip install fastapi uvicorn scikit-learn pandas numpy python-multipart pytesseract pillow aiofiles python-dotenv&#10;   ```&#10;   - For OCR, install Tesseract:&#10;     - Windows: Download from https://github.com/tesseract-ocr/tesseract&#10;     - Add Tesseract to your PATH.&#10;&#10;3. Run the backend:&#10;   ```bash&#10;   uvicorn app.main:app --reload&#10;   ```&#10;&#10;## Project Structure&#10;&#10;- app/&#10;  - main.py&#10;  - routers/&#10;    - classify.py&#10;    - ocr.py&#10;    - recommend.py&#10;  - ml/&#10;    - infer.py&#10;    - features.py&#10;  - schemas.py&#10;- data/&#10;  - raw/&#10;  - processed/&#10;- models/&#10;- scripts/&#10;  - prepare_data.py&#10;- ml/&#10;  - train.py&#10;&#10;---&#10;&#10;# Personalized News Platform Frontend&#10;&#10;## Setup&#10;&#10;1. Install Node.js (https://nodejs.org/)&#10;2. Create the frontend app:&#10;   ```bash&#10;   npm create vite@latest frontend -- --template react&#10;   cd frontend&#10;   npm install&#10;   npm install axios tailwindcss postcss autoprefixer&#10;   npx tailwindcss init -p&#10;   ```&#10;3. Configure Tailwind in `tailwind.config.js` and `src/index.css` (see code).&#10;4. Add `.env`:&#10;   ```env&#10;   VITE_API_URL=http://localhost:8000&#10;   ```&#10;5. Run the frontend:&#10;   ```bash&#10;   npm run dev&#10;   ```&#10;&#10;## Structure&#10;- src/&#10;  - pages/&#10;    - Feed.jsx&#10;    - Verify.jsx&#10;  - components/&#10;    - ArticleCard.jsx&#10;    - UploadBox.jsx&#10;  - api/&#10;    - client.js&#10;    - news.js&#10;  - index.css&#10;  - App.jsx&#10;&#10;---&#10;&#10;# Communication&#10;- Backend runs on port 8000, frontend on 5173 (default Vite).&#10;- CORS is enabled in FastAPI.&#10;- Use the provided API endpoints from the frontend via Axios.&#10;&#10;" />
+              <option name="updatedContent" value="from fastapi import FastAPI&#10;from fastapi.middleware.cors import CORSMiddleware&#10;from app.routers import classify, ocr, recommend&#10;&#10;app = FastAPI()&#10;&#10;app.add_middleware(&#10;    CORSMiddleware,&#10;    allow_origins=[&quot;*&quot;],&#10;    allow_credentials=True,&#10;    allow_methods=[&quot;*&quot;],&#10;    allow_headers=[&quot;*&quot;],&#10;)&#10;&#10;app.include_router(classify.router, prefix=&quot;/api&quot;)&#10;app.include_router(ocr.router, prefix=&quot;/api&quot;)&#10;app.include_router(recommend.router, prefix=&quot;/api&quot;)" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/ml/features.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/ml/features.py" />
+              <option name="updatedContent" value="import re&#10;&#10;def preprocess_text(text):&#10;    text = text.lower()&#10;    text = re.sub(r&quot;[^a-z0-9\s]&quot;, &quot;&quot;, text)&#10;    text = re.sub(r&quot;\s+&quot;, &quot; &quot;, text).strip()&#10;    return text&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/ml/infer.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/ml/infer.py" />
+              <option name="updatedContent" value="import joblib&#10;import os&#10;from app.ml.features import preprocess_text&#10;from PIL import Image&#10;import pytesseract&#10;from tempfile import NamedTemporaryFile&#10;&#10;def classify_news(text: str):&#10;    model_path = os.path.join(os.path.dirname(__file__), '../../models/model.joblib')&#10;    model = joblib.load(model_path)&#10;    vectorizer = joblib.load(model_path.replace('model.joblib', 'vectorizer.joblib'))&#10;    X = vectorizer.transform([preprocess_text(text)])&#10;    proba = model.predict_proba(X)[0][1]&#10;    label = &quot;Real&quot; if proba &gt; 0.5 else &quot;Fake&quot;&#10;    return label, float(proba)&#10;&#10;def ocr_image(file):&#10;    with NamedTemporaryFile(delete=False, suffix=&quot;.png&quot;) as tmp:&#10;        tmp.write(file.file.read())&#10;        tmp_path = tmp.name&#10;    image = Image.open(tmp_path)&#10;    text = pytesseract.image_to_string(image)&#10;    os.remove(tmp_path)&#10;    return text&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/routers/classify.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/routers/classify.py" />
+              <option name="updatedContent" value="from fastapi import APIRouter, HTTPException&#10;from app.schemas import NewsClassifyRequest, NewsClassifyResponse&#10;from app.ml.infer import classify_news&#10;&#10;router = APIRouter()&#10;&#10;@router.post(&quot;/classify&quot;, response_model=NewsClassifyResponse)&#10;def classify(request: NewsClassifyRequest):&#10;    try:&#10;        label, score = classify_news(request.text)&#10;        return NewsClassifyResponse(label=label, score=score)&#10;    except Exception as e:&#10;        raise HTTPException(status_code=500, detail=str(e))&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/routers/ocr.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/routers/ocr.py" />
+              <option name="updatedContent" value="from fastapi import APIRouter, UploadFile, File, HTTPException&#10;from app.schemas import OCRResponse&#10;from app.ml.infer import ocr_image&#10;&#10;router = APIRouter()&#10;&#10;@router.post(&quot;/ocr&quot;, response_model=OCRResponse)&#10;def ocr(file: UploadFile = File(...)):&#10;    try:&#10;        text = ocr_image(file)&#10;        return OCRResponse(text=text)&#10;    except Exception as e:&#10;        raise HTTPException(status_code=500, detail=str(e))&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/routers/recommend.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/routers/recommend.py" />
+              <option name="updatedContent" value="from fastapi import APIRouter&#10;from app.schemas import NewsRecommendResponse, NewsArticle&#10;&#10;router = APIRouter()&#10;&#10;@router.get(&quot;/recommend&quot;, response_model=NewsRecommendResponse)&#10;def recommend():&#10;    # Dummy data for now&#10;    articles = [&#10;        NewsArticle(title=&quot;AI Revolutionizes News&quot;, content=&quot;AI is changing the news industry...&quot;, url=&quot;#&quot;),&#10;        NewsArticle(title=&quot;Climate Change Update&quot;, content=&quot;Latest on climate change...&quot;, url=&quot;#&quot;),&#10;    ]&#10;    return NewsRecommendResponse(articles=articles)&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/schemas.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/schemas.py" />
+              <option name="updatedContent" value="from pydantic import BaseModel&#10;from typing import List&#10;&#10;class NewsClassifyRequest(BaseModel):&#10;    text: str&#10;&#10;class NewsClassifyResponse(BaseModel):&#10;    label: str&#10;    score: float&#10;&#10;class OCRResponse(BaseModel):&#10;    text: str&#10;&#10;class NewsArticle(BaseModel):&#10;    title: str&#10;    content: str&#10;    url: str&#10;&#10;class NewsRecommendResponse(BaseModel):&#10;    articles: List[NewsArticle]&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/.env">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/.env" />
+              <option name="originalContent" value="import api from &quot;./client&quot;;&#10;&#10;export const classifyNews = async (text) =&gt; {&#10;  const res = await api.post(&quot;/api/classify&quot;, { text });&#10;  return res.data;&#10;};&#10;&#10;export const ocrImage = async (file) =&gt; {&#10;  const formData = new FormData();&#10;  formData.append(&quot;file&quot;, file);&#10;  const res = await api.post(&quot;/api/ocr&quot;, formData, {&#10;    headers: { &quot;Content-Type&quot;: &quot;multipart/form-data&quot; },&#10;  });&#10;  return res.data;&#10;};&#10;&#10;export const getRecommendations = async () =&gt; {&#10;  const res = await api.get(&quot;/api/recommend&quot;);&#10;  return res.data.articles;&#10;};&#10;&#10;" />
+              <option name="updatedContent" value="VITE_API_URL=http://localhost:8000" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/App.jsx">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/App.jsx" />
+              <option name="updatedContent" value="import React from &quot;react&quot;;&#10;import { BrowserRouter, Routes, Route, Link } from &quot;react-router-dom&quot;;&#10;import Feed from &quot;./pages/Feed&quot;;&#10;import Verify from &quot;./pages/Verify&quot;;&#10;&#10;function App() {&#10;  return (&#10;    &lt;BrowserRouter&gt;&#10;      &lt;nav className=&quot;bg-gray-800 p-4 text-white flex justify-between&quot;&gt;&#10;        &lt;div className=&quot;font-bold&quot;&gt;FakeNews Platform&lt;/div&gt;&#10;        &lt;div&gt;&#10;          &lt;Link className=&quot;mr-4&quot; to=&quot;/&quot;&gt;Feed&lt;/Link&gt;&#10;          &lt;Link to=&quot;/verify&quot;&gt;Verify&lt;/Link&gt;&#10;        &lt;/div&gt;&#10;      &lt;/nav&gt;&#10;      &lt;Routes&gt;&#10;        &lt;Route path=&quot;/&quot; element={&lt;Feed /&gt;} /&gt;&#10;        &lt;Route path=&quot;/verify&quot; element={&lt;Verify /&gt;} /&gt;&#10;      &lt;/Routes&gt;&#10;    &lt;/BrowserRouter&gt;&#10;  );&#10;}&#10;&#10;export default App;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/api/client.js">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/api/client.js" />
+              <option name="updatedContent" value="import axios from &quot;axios&quot;;&#10;&#10;const api = axios.create({&#10;  baseURL: import.meta.env.VITE_API_URL || &quot;http://localhost:8000&quot;,&#10;  headers: {&#10;    &quot;Content-Type&quot;: &quot;application/json&quot;,&#10;  },&#10;});&#10;&#10;export default api;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/api/news.js">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/api/news.js" />
+              <option name="updatedContent" value="import api from &quot;./client&quot;;&#10;&#10;export const classifyNews = async (text) =&gt; {&#10;  const res = await api.post(&quot;/api/classify&quot;, { text });&#10;  return res.data;&#10;};&#10;&#10;export const ocrImage = async (file) =&gt; {&#10;  const formData = new FormData();&#10;  formData.append(&quot;file&quot;, file);&#10;  const res = await api.post(&quot;/api/ocr&quot;, formData, {&#10;    headers: { &quot;Content-Type&quot;: &quot;multipart/form-data&quot; },&#10;  });&#10;  return res.data;&#10;};&#10;&#10;export const getRecommendations = async () =&gt; {&#10;  const res = await api.get(&quot;/api/recommend&quot;);&#10;  return res.data.articles;&#10;};&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/components/ArticleCard.jsx">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/components/ArticleCard.jsx" />
+              <option name="updatedContent" value="import React from &quot;react&quot;;&#10;&#10;const ArticleCard = ({ article }) =&gt; (&#10;  &lt;div className=&quot;bg-white rounded shadow p-4 mb-4&quot;&gt;&#10;    &lt;h2 className=&quot;text-lg font-bold&quot;&gt;{article.title}&lt;/h2&gt;&#10;    &lt;p className=&quot;text-gray-700&quot;&gt;{article.content}&lt;/p&gt;&#10;    {article.url &amp;&amp; (&#10;      &lt;a href={article.url} className=&quot;text-blue-500 underline&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;&#10;        Read more&#10;      &lt;/a&gt;&#10;    )}&#10;  &lt;/div&gt;&#10;);&#10;&#10;export default ArticleCard;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/components/UploadBox.jsx">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/components/UploadBox.jsx" />
+              <option name="updatedContent" value="import React from &quot;react&quot;;&#10;&#10;const UploadBox = ({ onFileChange }) =&gt; (&#10;  &lt;div className=&quot;flex flex-col items-center border-2 border-dashed border-gray-400 p-4 rounded mb-4&quot;&gt;&#10;    &lt;input type=&quot;file&quot; accept=&quot;image/*&quot; onChange={e =&gt; onFileChange(e.target.files[0])} /&gt;&#10;    &lt;p className=&quot;text-gray-500 mt-2&quot;&gt;Upload an image to extract text (OCR)&lt;/p&gt;&#10;  &lt;/div&gt;&#10;);&#10;&#10;export default UploadBox;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/index.css">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/index.css" />
+              <option name="updatedContent" value="@tailwind base;&#10;@tailwind components;&#10;@tailwind utilities;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/main.jsx">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/main.jsx" />
+              <option name="updatedContent" value="import React from &quot;react&quot;;&#10;import ReactDOM from &quot;react-dom/client&quot;;&#10;import App from &quot;./App&quot;;&#10;import &quot;./index.css&quot;;&#10;&#10;ReactDOM.createRoot(document.getElementById(&quot;root&quot;)).render(&#10;  &lt;React.StrictMode&gt;&#10;    &lt;App /&gt;&#10;  &lt;/React.StrictMode&gt;&#10;);&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/pages/Feed.jsx">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/pages/Feed.jsx" />
+              <option name="updatedContent" value="import React, { useEffect, useState } from &quot;react&quot;;&#10;import { getRecommendations } from &quot;../api/news&quot;;&#10;import ArticleCard from &quot;../components/ArticleCard&quot;;&#10;&#10;const Feed = () =&gt; {&#10;  const [articles, setArticles] = useState([]);&#10;  useEffect(() =&gt; {&#10;    getRecommendations().then(setArticles);&#10;  }, []);&#10;  return (&#10;    &lt;div className=&quot;max-w-2xl mx-auto mt-8&quot;&gt;&#10;      &lt;h1 className=&quot;text-2xl font-bold mb-4&quot;&gt;Recommended News&lt;/h1&gt;&#10;      {articles.map((a, i) =&gt; (&#10;        &lt;ArticleCard key={i} article={a} /&gt;&#10;      ))}&#10;    &lt;/div&gt;&#10;  );&#10;};&#10;&#10;export default Feed;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/src/pages/Verify.jsx">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/src/pages/Verify.jsx" />
+              <option name="updatedContent" value="import React, { useState } from &quot;react&quot;;&#10;import { classifyNews, ocrImage } from &quot;../api/news&quot;;&#10;import UploadBox from &quot;../components/UploadBox&quot;;&#10;&#10;const Verify = () =&gt; {&#10;  const [text, setText] = useState(&quot;&quot;);&#10;  const [ocrResult, setOcrResult] = useState(&quot;&quot;);&#10;  const [result, setResult] = useState(null);&#10;  const [loading, setLoading] = useState(false);&#10;&#10;  const handleClassify = async () =&gt; {&#10;    setLoading(true);&#10;    const res = await classifyNews(text);&#10;    setResult(res);&#10;    setLoading(false);&#10;  };&#10;&#10;  const handleFile = async (file) =&gt; {&#10;    setLoading(true);&#10;    const ocr = await ocrImage(file);&#10;    setOcrResult(ocr.text);&#10;    setText(ocr.text);&#10;    setLoading(false);&#10;  };&#10;&#10;  return (&#10;    &lt;div className=&quot;max-w-xl mx-auto mt-8&quot;&gt;&#10;      &lt;h1 className=&quot;text-2xl font-bold mb-4&quot;&gt;Verify News&lt;/h1&gt;&#10;      &lt;textarea&#10;        className=&quot;w-full border rounded p-2 mb-2&quot;&#10;        rows={5}&#10;        placeholder=&quot;Paste news text here or use OCR below...&quot;&#10;        value={text}&#10;        onChange={e =&gt; setText(e.target.value)}&#10;      /&gt;&#10;      &lt;UploadBox onFileChange={handleFile} /&gt;&#10;      &lt;button&#10;        className=&quot;bg-blue-600 text-white px-4 py-2 rounded&quot;&#10;        onClick={handleClassify}&#10;        disabled={loading || !text}&#10;      &gt;&#10;        {loading ? &quot;Processing...&quot; : &quot;Classify&quot;}&#10;      &lt;/button&gt;&#10;      {result &amp;&amp; (&#10;        &lt;div className=&quot;mt-4 p-4 bg-gray-100 rounded&quot;&gt;&#10;          &lt;div&gt;Label: &lt;b&gt;{result.label}&lt;/b&gt;&lt;/div&gt;&#10;          &lt;div&gt;Score: {result.score.toFixed(3)}&lt;/div&gt;&#10;        &lt;/div&gt;&#10;      )}&#10;      {ocrResult &amp;&amp; (&#10;        &lt;div className=&quot;mt-2 text-sm text-gray-500&quot;&gt;OCR Text: {ocrResult}&lt;/div&gt;&#10;      )}&#10;    &lt;/div&gt;&#10;  );&#10;};&#10;&#10;export default Verify;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frontend/tailwind.config.js">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/frontend/tailwind.config.js" />
+              <option name="updatedContent" value="/** @type {import('tailwindcss').Config} */&#10;export default {&#10;  content: [&#10;    &quot;./index.html&quot;,&#10;    &quot;./src/**/*.{js,jsx,ts,tsx}&quot;,&#10;  ],&#10;  theme: {&#10;    extend: {},&#10;  },&#10;  plugins: [],&#10;};&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ml/train.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/ml/train.py" />
+              <option name="updatedContent" value="import pandas as pd&#10;from sklearn.feature_extraction.text import TfidfVectorizer&#10;from sklearn.linear_model import LogisticRegression&#10;import joblib&#10;import os&#10;from app.ml.features import preprocess_text&#10;&#10;def train():&#10;    train_df = pd.read_csv(&quot;data/processed/train.csv&quot;)&#10;    X = train_df[&quot;text&quot;].apply(preprocess_text)&#10;    y = train_df[&quot;label&quot;].map({&quot;REAL&quot;: 1, &quot;FAKE&quot;: 0, &quot;Real&quot;: 1, &quot;Fake&quot;: 0})&#10;    vectorizer = TfidfVectorizer(max_features=5000)&#10;    X_vec = vectorizer.fit_transform(X)&#10;    model = LogisticRegression(max_iter=1000)&#10;    model.fit(X_vec, y)&#10;    os.makedirs(&quot;models&quot;, exist_ok=True)&#10;    joblib.dump(model, &quot;models/model.joblib&quot;)&#10;    joblib.dump(vectorizer, &quot;models/vectorizer.joblib&quot;)&#10;&#10;if __name__ == &quot;__main__&quot;:&#10;    train()&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/scripts/prepare_data.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/scripts/prepare_data.py" />
+              <option name="updatedContent" value="import pandas as pd&#10;from sklearn.model_selection import train_test_split&#10;import os&#10;&#10;def prepare():&#10;    raw_path = &quot;data/raw/news.csv&quot;  # Example file&#10;    df = pd.read_csv(raw_path)&#10;    df = df.dropna(subset=[&quot;text&quot;, &quot;label&quot;])&#10;    train, test = train_test_split(df, test_size=0.2, random_state=42)&#10;    train, val = train_test_split(train, test_size=0.1, random_state=42)&#10;    os.makedirs(&quot;data/processed&quot;, exist_ok=True)&#10;    train.to_csv(&quot;data/processed/train.csv&quot;, index=False)&#10;    val.to_csv(&quot;data/processed/val.csv&quot;, index=False)&#10;    test.to_csv(&quot;data/processed/test.csv&quot;, index=False)&#10;&#10;if __name__ == &quot;__main__&quot;:&#10;    prepare()&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
