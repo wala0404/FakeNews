@@ -3,14 +3,6 @@
   <component name="CopilotDiffPersistence">
     <option name="pendingDiffs">
       <map>
-        <entry key="$PROJECT_DIR$/README.md">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/README.md" />
-              <option name="updatedContent" value="# Personalized News Platform Backend&#10;&#10;## Setup&#10;&#10;1. Create a virtual environment and activate it:&#10;   ```bash&#10;   python -m venv venv&#10;   source venv/bin/activate  # On Windows: venv\Scripts\activate&#10;   ```&#10;2. Install dependencies:&#10;   ```bash&#10;   pip install fastapi uvicorn scikit-learn pandas numpy python-multipart pytesseract pillow aiofiles python-dotenv&#10;   ```&#10;   - For OCR, install Tesseract:&#10;     - Windows: Download from https://github.com/tesseract-ocr/tesseract&#10;     - Add Tesseract to your PATH.&#10;&#10;3. Run the backend:&#10;   ```bash&#10;   uvicorn app.main:app --reload&#10;   ```&#10;&#10;## Project Structure&#10;&#10;- app/&#10;  - main.py&#10;  - routers/&#10;    - classify.py&#10;    - ocr.py&#10;    - recommend.py&#10;  - ml/&#10;    - infer.py&#10;    - features.py&#10;  - schemas.py&#10;- data/&#10;  - raw/&#10;  - processed/&#10;- models/&#10;- scripts/&#10;  - prepare_data.py&#10;- ml/&#10;  - train.py&#10;&#10;---&#10;&#10;# Personalized News Platform Frontend&#10;&#10;## Setup&#10;&#10;1. Install Node.js (https://nodejs.org/)&#10;2. Create the frontend app:&#10;   ```bash&#10;   npm create vite@latest frontend -- --template react&#10;   cd frontend&#10;   npm install&#10;   npm install axios tailwindcss postcss autoprefixer&#10;   npx tailwindcss init -p&#10;   ```&#10;3. Configure Tailwind in `tailwind.config.js` and `src/index.css` (see code).&#10;4. Add `.env`:&#10;   ```env&#10;   VITE_API_URL=http://localhost:8000&#10;   ```&#10;5. Run the frontend:&#10;   ```bash&#10;   npm run dev&#10;   ```&#10;&#10;## Structure&#10;- src/&#10;  - pages/&#10;    - Feed.jsx&#10;    - Verify.jsx&#10;  - components/&#10;    - ArticleCard.jsx&#10;    - UploadBox.jsx&#10;  - api/&#10;    - client.js&#10;    - news.js&#10;  - index.css&#10;  - App.jsx&#10;&#10;---&#10;&#10;# Communication&#10;- Backend runs on port 8000, frontend on 5173 (default Vite).&#10;- CORS is enabled in FastAPI.&#10;- Use the provided API endpoints from the frontend via Axios.&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/app/main.py">
           <value>
             <PendingDiffInfo>

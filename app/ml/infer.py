@@ -11,7 +11,7 @@ def classify_news(text: str):
     vectorizer = joblib.load(model_path.replace('model.joblib', 'vectorizer.joblib'))
     X = vectorizer.transform([preprocess_text(text)])
     proba = model.predict_proba(X)[0][1]
-    label = "Real" if proba > 0.5 else "Fake"
+    label = "Real" if proba > 0.5 else "Very Fake"
     return label, float(proba)
 
 def ocr_image(file):
