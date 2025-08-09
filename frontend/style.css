@@ -1,0 +1,69 @@
+/* Basic styles for FakeNews Platform */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f3f4f6;
+}
+.navbar {
+  background: #1f2937;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-links a {
+  color: #fff;
+  margin-left: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+.nav-links a:hover {
+  text-decoration: underline;
+}
+main {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 2rem;
+}
+.button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.button:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+}
+.card {
+  background: #f9fafb;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.upload-box {
+  border: 2px dashed #9ca3af;
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Add this to your style.css */
+
+.rtl {
+  direction: rtl;
+  unicode-bidi: embed;
+  text-align: right;
+  font-family: "Arial", "Tahoma", "Helvetica", "Segoe UI", sans-serif;
+  font-size: 1.1em;
+  line-height: 1.4;
+}
