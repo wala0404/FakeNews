@@ -1,10 +1,12 @@
 const mainContent = document.getElementById('main-content');
 
+// ----------- Feed -----------
 function renderFeed() {
   mainContent.innerHTML = `
     <h1>Recommended News</h1>
     <div id="articles"></div>
   `;
+
   fetch('http://localhost:8000/api/recommend')
     .then(res => res.json())
     .then(articles => {
@@ -19,6 +21,7 @@ function renderFeed() {
     });
 }
 
+// ----------- Verify -----------
 function renderVerify() {
   mainContent.innerHTML = `
     <h1>Verify News</h1>
@@ -37,9 +40,68 @@ function renderVerify() {
     <div id="ocr-result" style="margin-top:0.5rem;color:#6b7280;"></div>
   `;
 
-  // Classify Button Handler
+  const newsTextEl = document.getElementById('news-text');
+  const ocrResultEl = document.getElementById('ocr-result');
+
+  // ----------- OCR Button Handler -----------
+  document.getElementById('ocr-only-btn').addEventListener('click', async () => {
+    const fileInput = document.getElementById('ocr-file');
+    const langInput = document.querySelector('input[name="lang"]:checked');
+    const button = document.getElementById('ocr-only-btn');
+
+    if (!fileInput.files.length) {
+      ocrResultEl.textContent = 'Please select an image first.';
+      return;
+    }
+    if (!langInput) {
+      ocrResultEl.textContent = 'Please select a language.';
+      return;
+    }
+
+    const langParam = langInput.value;
+    const isArabic = langParam === 'ara';
+
+    const formData = new FormData();
+    formData.append('file', fileInput.files[0]);
+    formData.append('lang', langParam);
+
+    // Update UI
+    const originalButtonText = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Processing...';
+    ocrResultEl.textContent = 'Processing image...';
+    ocrResultEl.classList.remove('error');
+
+    try {
+      const response = await fetch('http://localhost:8000/api/ocr', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data?.error || `Server error: ${response.status}`);
+
+      console.log('OCR Response:', data);
+
+      // Set text direction
+      newsTextEl.value = data.text || '';
+      newsTextEl.dir = isArabic ? 'rtl' : 'ltr';
+      newsTextEl.style.textAlign = isArabic ? 'right' : 'left';
+      ocrResultEl.textContent = 'Text extracted successfully!';
+
+    } catch (err) {
+      console.error('OCR Error:', err);
+      ocrResultEl.textContent = `Error: ${err.message}`;
+      ocrResultEl.classList.add('error');
+    } finally {
+      button.disabled = false;
+      button.textContent = originalButtonText;
+    }
+  });
+
+  // ----------- Classify Button Handler -----------
   document.getElementById('classify-btn').onclick = async () => {
-    const text = document.getElementById('news-text').value.trim();
+    const text = newsTextEl.value.trim();
     if (!text) return;
 
     const resultEl = document.getElementById('verify-result');
@@ -51,7 +113,6 @@ function renderVerify() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text })
       });
-
       if (!response.ok) throw new Error('Classification failed');
 
       const result = await response.json();
@@ -64,99 +125,12 @@ function renderVerify() {
       console.error('Classification error:', error);
     }
   };
-
-  // OCR Button Handler
-  document.getElementById('ocr-only-btn').addEventListener('click', async () => {
-    const fileInput = document.getElementById('ocr-file');
-    const ocrResultEl = document.getElementById('ocr-result');
-    const newsTextEl = document.getElementById('news-text');
-    const button = document.getElementById('ocr-only-btn');
-
-    // Validate inputs
-    if (!fileInput.files.length) {
-      ocrResultEl.textContent = 'Please select an image first.';
-      return;
-    }
-
-    const langInput = document.querySelector('input[name="lang"]:checked');
-    if (!langInput) {
-      ocrResultEl.textContent = 'Please select a language.';
-      return;
-    }
-
-    // Prepare request
-    const file = fileInput.files[0];
-    const langParam = langInput.value;
-    const isArabic = langParam === 'ara';
-
-    // Validate file type
-    if (!file.type.match('image.*')) {
-      ocrResultEl.textContent = 'Please upload an image file (JPEG/PNG).';
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('lang', langParam);
-
-    // UI state
-    const originalButtonText = button.textContent;
-    button.disabled = true;
-    button.textContent = 'Processing...';
-    ocrResultEl.textContent = 'Processing image...';
-    ocrResultEl.classList.remove('error');
-
-    try {
-      // API call
-      const response = await fetch('http://localhost:8000/api/ocr', {
-        method: 'POST',
-        body: formData
-      });
-
-      // Handle response
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.error || `Server error: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      // Apply RTL styling if Arabic
-      if (isArabic) {
-        ocrResultEl.classList.add('rtl');
-        newsTextEl.classList.add('rtl');
-        newsTextEl.style.textAlign = 'right';
-        newsTextEl.dir = 'rtl';
-      } else {
-        ocrResultEl.classList.remove('rtl');
-        newsTextEl.classList.remove('rtl');
-        newsTextEl.style.textAlign = 'left';
-        newsTextEl.dir = 'ltr';
-      }
-
-      // Update UI with results
-      ocrResultEl.textContent = 'Extracted Text:';
-      newsTextEl.value = data.text;
-      console.log('OCR Success:', data);
-
-    } catch (error) {
-      console.error('OCR Error:', error);
-      ocrResultEl.textContent = `Error: ${error.message}`;
-      ocrResultEl.classList.add('error');
-    } finally {
-      button.disabled = false;
-      button.textContent = originalButtonText;
-    }
-  });
 }
 
-
+// ----------- Routing -----------
 function handleHashChange() {
-  if (location.hash === '#verify') {
-    renderVerify();
-  } else {
-    renderFeed();
-  }
+  if (location.hash === '#verify') renderVerify();
+  else renderFeed();
 }
 
 document.getElementById('feed-link').onclick = () => { location.hash = '#feed'; };

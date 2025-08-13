@@ -1,10 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import ocr, classify, recommend  # Make sure all routers are imported
+from app.routers import ocr, classify  # Add classify import
 
-app = FastAPI(title="FakeNews Detector", version="1.0.0")
+app = FastAPI()
 
-# CORS Configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -13,19 +12,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/", include_in_schema=False)
-async def root():
-    return {
-        "message": "FakeNews Detection API",
-        "endpoints": {
-            "docs": "/docs",
-            "ocr": "/api/ocr",
-            "classify": "/api/classify",
-            "recommend": "/api/recommend"
-        }
-    }
-
-# Include all routers
+# Include both routers
 app.include_router(ocr.router, prefix="/api")
 app.include_router(classify.router, prefix="/api")
-app.include_router(recommend.router, prefix="/api")
+
+@app.get("/")
+async def root():
+    return {"message": "News Verification API is running"}
