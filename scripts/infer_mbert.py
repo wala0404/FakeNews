@@ -20,6 +20,7 @@ def predict(text: str):
     pred = probs.argmax()
     return {"label": id2label[pred], "score": float(probs[pred])}
 
+
 if __name__ == "__main__":
     text = " ".join(sys.argv[1:]) or "عاجل: دواء سحري يشفي كل الأمراض بيوم"
     result = predict(text)

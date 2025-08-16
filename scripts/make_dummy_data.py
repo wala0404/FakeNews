@@ -11,6 +11,8 @@ rows = [
     {"text": "الرئاسة تعلن عن موعد الانتخابات", "label": 1},
     {"text": "دواء سحري يشفي كل الأمراض بيوم", "label": 0},
 ]
+
+
 df = pd.DataFrame(rows)
 df.iloc[:6].to_csv("data/processed/train.csv", index=False)
 df.iloc[6:7].to_csv("data/processed/val.csv", index=False)
