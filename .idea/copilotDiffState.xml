@@ -127,6 +127,14 @@
             </PendingDiffInfo>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/requirements.txt">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/requirements.txt" />
+              <option name="updatedContent" value="fastapi&#10;uvicorn&#10;python-multipart&#10;pydantic&#10;scikit-learn&#10;pandas&#10;numpy&#10;torch&#10;transformers&#10;pytesseract&#10;Pillow&#10;python-dotenv&#10;joblib&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
