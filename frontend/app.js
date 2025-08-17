@@ -6,9 +6,9 @@ const mainContent = document.getElementById("main-content");
 // ---------------------------
 // NEWS API (Live News)
 // ---------------------------
-const API_KEY = "0ea2bdb2e0714ed0a010339f866ae4b0";
-const url = "https://newsapi.org/v2/everything?q=";
 
+const API_KEY = "a2098a3a19f1474387f0ba2d622092ad"
+const url = "https://newsapi.org/v2/everything?q=";
 async function fetchNews(query) {
   const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
   const data = await res.json();

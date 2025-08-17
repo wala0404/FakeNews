@@ -3,14 +3,6 @@
   <component name="CopilotDiffPersistence">
     <option name="pendingDiffs">
       <map>
-        <entry key="$PROJECT_DIR$/app/routers/recommend.py">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/routers/recommend.py" />
-              <option name="updatedContent" value="from fastapi import APIRouter&#10;from app.schemas import NewsRecommendResponse, NewsArticle&#10;&#10;router = APIRouter()&#10;&#10;@router.get(&quot;/recommend&quot;, response_model=NewsRecommendResponse)&#10;def recommend():&#10;    # Dummy data for now&#10;    articles = [&#10;        NewsArticle(title=&quot;AI Revolutionizes News&quot;, content=&quot;AI is changing the news industry...&quot;, url=&quot;#&quot;),&#10;        NewsArticle(title=&quot;Climate Change Update&quot;, content=&quot;Latest on climate change...&quot;, url=&quot;#&quot;),&#10;    ]&#10;    return NewsRecommendResponse(articles=articles)&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/frontend/.env">
           <value>
             <PendingDiffInfo>
