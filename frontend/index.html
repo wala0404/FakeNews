@@ -3,22 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FakeNews Platform</title>
+  <title>Palestinian News & Verify</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Navigation -->
   <nav class="navbar">
-    <div class="brand">FakeNews Platform</div>
+    <div class="brand">Palestinian News</div>
+
     <div class="nav-links">
-      <a href="#feed" id="feed-link">Feed</a>
-      <a href="#verify" id="verify-link">Verify</a>
+      <a href="#breaking" id="breaking" class="hover-link nav-item" onclick="onNavItemClick('breaking')" >Breaking</a>
+      <a href="#politics" id="politics" class="hover-link nav-item" onclick="onNavItemClick('Politics')">Politics</a>
+      <a href="#sports" id="sports" class="hover-link nav-item" onclick="onNavItemClick('Sports')" >Sports</a>
+      <a href="#gaza" id="gaza" class="hover-link nav-item" onclick="onNavItemClick('Gaza')" >Gaza</a>
+      <a href="#verify" id="verify-link" class="hover-link nav-item">Verify</a>
     </div>
+
+    <div class="search-bar flex">
+      <input type="text" class="news-input" id="search-text" placeholder="Search news">
+      <button class="search-button" id="search-button">Search</button>
+    </div>
+
+
   </nav>
 
+  <!-- Main Content -->
   <main id="main-content">
-    <!-- Content injected by JS -->
+    <div id="articles"></div>
+    <div class="cards-container container flex" id="cardscontainer"></div>
   </main>
 
+  <!-- News Card Template -->
+  <template id="template-news-card">
+    <div class="card">
+      <div class="card-header">
+        <img src="https://via.placeholder.com/400x200" alt="" id="news-img">
+      </div>
+      <div class="card-content">
+        <h3 id="news-title">News Title</h3>
+        <h6 class="news-source" id="news-source">Source · Date</h6>
+        <p class="news-desc" id="news-desc">News description...</p>
+      </div>
+    </div>
+  </template>
+
+  <!-- JS Scripts -->
   <script src="app.js"></script>
 </body>
 </html>
