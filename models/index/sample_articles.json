@@ -1,0 +1,31 @@
+{
+  "articles": [
+    {
+      "id": "https://news.com/article123",
+      "title": "Breaking News Example",
+      "description": "",
+      "language": "en",
+      "source": {"name": "BBC"},
+      "publishedAt": "2025-08-26T10:00:00Z",
+      "url": "https://news.com/article123"
+    },
+    {
+      "id": "https://news.com/article456",
+      "title": "Another Headline",
+      "description": "",
+      "language": "en",
+      "source": {"name": "Reuters"},
+      "publishedAt": "2025-08-25T08:00:00Z",
+      "url": "https://news.com/article456"
+    },
+    {
+      "id": "https://news.com/article789",
+      "title": "Tech Update",
+      "description": "",
+      "language": "en",
+      "source": {"name": "The Verge"},
+      "publishedAt": "2025-08-24T09:30:00Z",
+      "url": "https://news.com/article789"
+    }
+  ]
+}

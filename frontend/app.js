@@ -2,6 +2,8 @@
 // app.js
 // ---------------------------
 const mainContent = document.getElementById("main-content");
+// Backend API base (avoid port 8000/3000 conflicts)
+const API_BASE = "http://localhost:8011/api";
 
 // ---------------------------
 // NEWS API (Live News)
@@ -92,7 +94,7 @@ function renderFeed() {
   `;
 
   // Fetch recommended news from backend
-  fetch("http://localhost:8000/api/recommend")
+  fetch(`${API_BASE}/recommend`)
     .then((res) => res.json())
     .then((articles) => {
       const articlesDiv = document.getElementById("articles");
@@ -166,7 +168,7 @@ function renderVerify() {
     ocrResultEl.classList.remove("error");
 
     try {
-      const response = await fetch("http://localhost:8000/api/ocr", {
+  const response = await fetch(`${API_BASE}/ocr`, {
         method: "POST",
         body: formData,
       });
@@ -197,7 +199,7 @@ function renderVerify() {
     resultEl.textContent = "Processing...";
 
     try {
-      const response = await fetch("http://localhost:8000/api/classify", {
+  const response = await fetch(`${API_BASE}/classify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),

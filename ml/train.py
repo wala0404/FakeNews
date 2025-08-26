@@ -19,17 +19,5 @@ def train():
 
 if __name__ == "__main__":
     train()
-from fastapi import APIRouter, HTTPException
-from app.schemas import NewsClassifyRequest, NewsClassifyResponse
-from app.ml.infer import classify_news
-
-router = APIRouter()
-
-@router.post("/classify", response_model=NewsClassifyResponse)
-def classify(request: NewsClassifyRequest):
-    try:
-        label, score = classify_news(request.text)
-        return NewsClassifyResponse(label=label, score=score)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+ 
 

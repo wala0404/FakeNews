@@ -1,0 +1,5 @@
+scikit-learn>=1.2
+joblib>=1.2
+xgboost>=1.7 ; platform_system != "Windows" or platform_machine != "ARM64"
+numpy>=1.23
+scipy>=1.10

@@ -1,0 +1,98 @@
+# ---- OS / Editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.code-workspace
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.env
+.env.*
+.cache/
+
+# Packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Coverage / Test Artifacts
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# ---- Node / Frontend (safety) ----
+node_modules/
+.parcel-cache/
+.turbo/
+
+# ---- Logs / Temp ----
+logs/
+*.log
+tmp/
+temp/
+
+# ---- Data & Models (keep tracked; large files may still be excluded below) ----
+# Intentionally not ignoring data/** and models/** so teammates can train locally with your prepared subsets.
+
+# Specific generated artifacts (rebuildable)
+**/faiss.index
+**/item_vectors.npy
+**/article_ids.npy
+**/meta.json
+**/ranker.pkl
+**/ranker.xgb
+events.csv
+
+# Always keep curated assets you added manually
+!data/curated/**
+!models/curated/**
+
+# Ignore precomputed embeddings unless curated
+models/embeddings/**
+
+# ---- Archives / Binary Assets ----
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+*.gz
+
+# ---- Documents (exclude project docs from branch push) ----
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+*.odt
+*.rtf
+*.csv
+**/*.md
+!README.md
+
+# Keep dependency manifests and config (don’t ignore):
+!requirements*.txt
+!pyproject.toml
+!poetry.lock
+!Pipfile
+!Pipfile.lock
+!environment.yml
+!package.json
+!package-lock.json
+!pnpm-lock.yaml
+!yarn.lock

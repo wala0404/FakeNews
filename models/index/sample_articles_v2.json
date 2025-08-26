@@ -1,0 +1,31 @@
+{
+  "articles": [
+    {
+      "id": "https://news.com/article123?v=2",
+      "title": "Breaking News Example v2",
+      "description": "",
+      "language": "en",
+      "source": {"name": "BBC"},
+      "publishedAt": "2025-08-26T10:00:00Z",
+      "url": "https://news.com/article123?v=2"
+    },
+    {
+      "id": "https://news.com/article456?v=2",
+      "title": "Another Headline v2",
+      "description": "",
+      "language": "en",
+      "source": {"name": "Reuters"},
+      "publishedAt": "2025-08-25T08:00:00Z",
+      "url": "https://news.com/article456?v=2"
+    },
+    {
+      "id": "https://news.com/article999?v=1",
+      "title": "Fresh Item",
+      "description": "",
+      "language": "en",
+      "source": {"name": "AP"},
+      "publishedAt": "2025-08-26T11:30:00Z",
+      "url": "https://news.com/article999?v=1"
+    }
+  ]
+}
