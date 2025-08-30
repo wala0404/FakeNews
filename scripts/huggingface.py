@@ -1,7 +1,7 @@
 from huggingface_hub import create_repo, upload_folder
 
 repo_id = "wala0404/fake-news-mbert"
-create_repo(repo_id, exist_ok=True, private=True)
+create_repo(repo_id, exist_ok=True, private=False)
 
 upload_folder(
     folder_path="models/mbert-fake-news-bf16/best",
