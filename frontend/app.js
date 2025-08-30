@@ -205,10 +205,8 @@ function renderVerify() {
       if (!response.ok) throw new Error("Classification failed");
 
       const result = await response.json();
-      resultEl.innerHTML = `
-        <div>Label: <b>${result.label}</b></div>
-        <div>Score: ${result.score.toFixed(3)}</div>
-      `;
+      renderVerdict(result, resultEl);
+
     } catch (error) {
       resultEl.textContent = `Error: ${error.message}`;
       console.error("Classification error:", error);
@@ -240,3 +238,21 @@ window.addEventListener("hashchange", handleHashChange);
 
 // Initial render
 handleHashChange();
+
+
+function renderVerdict(result, container) {
+  const label = (result.label || '').toUpperCase();
+  const scorePct = Math.round((result.score ?? 0) * 100);
+
+  const cls =
+    label === "REAL" ? "real" :
+    label === "FAKE" ? "fake" : "unsure";
+
+  container.innerHTML = `
+    <div class="verdict verdict-xl ${cls}">
+      <div class="badge"><span class="dot"></span>${label}</div>
+      <div class="meter"><div class="fill" style="width:${scorePct}%"></div></div>
+      <div class="score">${scorePct}%</div>
+    </div>
+  `;
+}

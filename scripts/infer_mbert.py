@@ -1,27 +1,15 @@
+from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
-import torch, os, sys
+best_dir = "models/mbert-fake-news-bf16/best"
+tok = AutoTokenizer.from_pretrained(best_dir)
+model = AutoModelForSequenceClassification.from_pretrained(best_dir)
 
-MODEL_DIR = os.getenv("MODEL_DIR", "models/mbert-fake-news/best")
-tok = AutoTokenizer.from_pretrained(MODEL_DIR)
+clf = pipeline("text-classification", model=model, tokenizer=tok, device_map="auto")
 
-# Move to GPU if available, otherwise use CPU
-device = "cuda" if torch.cuda.is_available() else "cpu"
-model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR).to(device).eval()
-
-id2label = {0: "Fake", 1: "Real"}
-
-def predict(text: str):
-    if not text.strip():
-        return {"label": "Unknown", "score": 0.0}
-    enc = tok(text, truncation=True, return_tensors="pt").to(device)
-    with torch.no_grad():
-        probs = torch.softmax(model(**enc).logits, dim=-1)[0].detach().cpu().numpy()
-    pred = probs.argmax()
-    return {"label": id2label[pred], "score": float(probs[pred])}
+print(clf("السرعة عامل مسبب ومضاعف للحوادث"))
+print(clf("عاجل: علاج نهائي للسرطان خلال أسبوع وفق منشور فيسبوك!"))
+print(clf("The quick brown fox jumps over the lazy dog."))
+print(clf("Breaking: Cure for cancer found in a Facebook post!"))
+print(clf(" "))
 
 
-if __name__ == "__main__":
-    text = " ".join(sys.argv[1:]) or "عاجل: دواء سحري يشفي كل الأمراض بيوم"
-    result = predict(text)
-    print(result)
